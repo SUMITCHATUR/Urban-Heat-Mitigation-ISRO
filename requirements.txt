@@ -1,0 +1,7 @@
+earthengine-api
+psycopg2-binary
+scikit-learn
+geopandas
+folium
+streamlit
+streamlit-folium
