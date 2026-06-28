@@ -4,6 +4,7 @@ import folium
 from streamlit_folium import st_folium
 
 # Title of the Dashboard (Matching your PPT/Wireframe)
+st.set_page_config(page_title="Urban Heat Mitigation Dashboard", layout="wide")
 st.title("💡 AI-Driven Urban Heat Mitigation Dashboard")
 st.subheader("Pilot City: Chhatrapati Sambhajinagar")
 
@@ -31,23 +32,23 @@ def predict_mitigation_impact(lst, albedo):
     Uses Random Forest Regressor logic to predict temperature drops 
     by altering surface Albedo (Cool Roofs) and NDVI/Canopy (Tree Plantation).
     """
-    # Simulating model outputs based on LST and Albedo correlation
+    # Simulating model outputs based on LST and Albedo correlation with precision rounding
     return [
         {
             "Zone/Area": "Zone A (High Density Residential)", 
-            "Current LST": f"{lst + 0.9} °C", 
+            "Current LST": f"{round(lst + 0.9, 1)} °C", 
             "Target Albedo (After Cool Roofs)": "0.65 (High)",
             "Estimated LST Drop": "3.1 °C"
         },
         {
             "Zone/Area": "Zone B (Commercial & Industrial)", 
-            "Current LST": f"{lst + 0.2} °C", 
+            "Current LST": f"{round(lst + 0.2, 1)} °C", # <--- Floated calculation error fixed here with round()
             "Target Albedo (After Cool Roofs)": "0.70 (Max)",
             "Estimated LST Drop": "2.5 °C"
         },
         {
             "Zone/Area": "Zone C (Open/Residential)", 
-            "Current LST": f"{lst - 1.1} °C", 
+            "Current LST": f"{round(lst - 1.1, 1)} °C", 
             "Target Albedo (After Cool Roofs)": "0.55 (Medium)",
             "Estimated LST Drop": "1.8 °C"
         }
